@@ -241,7 +241,7 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
          }
 }
 
-// Write .OFF File (TO-DO: Fix the mess that is its current state)
+// Write .OFF File
 void Sculptor::writeOFF(const char *filename)
 {
    /* TO-DO: Rewrite method from scratch (coords and faces have to repeat)
