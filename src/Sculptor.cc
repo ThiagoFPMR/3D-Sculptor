@@ -247,4 +247,8 @@ void Sculptor::writeOFF(const char *filename)
    /* TO-DO: Rewrite method from scratch (coords and faces have to repeat)
     * just keep track of what the ID for each coord is with a counter var and
     * loop for each voxel without keeping memory and we'll be fine */
+
+   /* TO USE LATER:
+    * file.seekg(std::ios::beg);
+    * file.ignore(std::numeric_limits<std::streamsize>::max(),'\n'); */
 }
