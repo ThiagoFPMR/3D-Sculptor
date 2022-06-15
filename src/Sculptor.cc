@@ -247,8 +247,93 @@ void Sculptor::writeOFF(const char *filename)
    /* TO-DO: Rewrite method from scratch (coords and faces have to repeat)
     * just keep track of what the ID for each coord is with a counter var and
     * loop for each voxel without keeping memory and we'll be fine */
+   // Defines variables that will be used in this method
+   int nVertices = 0, nFaces = 0, nActiveVoxels = 0, **activeVoxelCoords;
+   activeVoxelCoords = new int *[nx * ny * nz];
+   activeVoxelCoords[0] = new int[3 * nx * ny * nz];
+   for (int i = 1; i < nx * ny * nz; i++)
+      activeVoxelCoords[i] = activeVoxelCoords[i - 1] + 3;
+   /* The loop below iterates through every voxel, checks whether it's active,
+    * and updates the count variables based on it. It also stores the active
+    * voxels' coords in arrays for further use.*/
+   for (int i = 0; i < nx; i++)
+      for (int j = 0; j < ny; j++)
+         for (int k = 0; k < nz; k++)
+         {
+            if (v[i][j][k].isOn)
+            {
+               activeVoxelCoords[nActiveVoxels][0] = i;
+               activeVoxelCoords[nActiveVoxels][1] = j;
+               activeVoxelCoords[nActiveVoxels][2] = k;
+               nActiveVoxels++;
+               nVertices++;
+               nFaces++;
+            }
+         }
+   // Opens the .OFF file to write on
+   std::ofstream fout;
+   fout.open(filename);
+   if (!fout.is_open())
+      exit(1);
+   // Writes the opening lines of the file
+   fout << "OFF\n";
+   fout << nVertices << " " << nFaces << " 0\n";
+   /* The loop below loops through every voxel and writes their corner
+    * coordinates to the .OFF file.*/
+   for (int i = 0; i < nActiveVoxels; i++)
+   {
+      /* For this code implementation, the top-left-front corner of every voxel
+       * is (i, j, k) while the bottom-right-back corner is (i+1, j+1, k+1). The
+       * coordinates for the other corners are based around them.*/
+      int corners[8][3] = {{activeVoxelCoords[i][0], activeVoxelCoords[i][1], activeVoxelCoords[i][2]},
+                           {activeVoxelCoords[i][0], activeVoxelCoords[i][1], activeVoxelCoords[i][2] + 1},
+                           {activeVoxelCoords[i][0], activeVoxelCoords[i][1] + 1, activeVoxelCoords[i][2]},
+                           {activeVoxelCoords[i][0] + 1, activeVoxelCoords[i][1], activeVoxelCoords[i][2]},
+                           {activeVoxelCoords[i][0] + 1, activeVoxelCoords[i][1] + 1, activeVoxelCoords[i][2]},
+                           {activeVoxelCoords[i][0], activeVoxelCoords[i][1] + 1, activeVoxelCoords[i][2] + 1},
+                           {activeVoxelCoords[i][0] + 1, activeVoxelCoords[i][1], activeVoxelCoords[i][2] + 1},
+                           {activeVoxelCoords[i][0] + 1, activeVoxelCoords[i][1] + 1, activeVoxelCoords[i][2] + 1}};
+      // Writing to the .OFF file
+      for (int j = 0; j < 8; j++)
+      {
+         fout << corners[i][0] << " ";
+         fout << corners[i][1] << " ";
+         fout << corners[i][2] << "\n";
+      }
+   }
+   /* The loop below loops through every face of every voxel and writes
+    * their corners and the color used to paint them to the .OFF file.*/
+   for (int i = 0; i < nActiveVoxels; i++)
+   {
+      // Gets the colors for the voxel
+      float red = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].r;
+      float green = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].g;
+      float blue = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].b;
+      float alpha = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].a;
 
-   /* TO USE LATER:
-    * file.seekg(std::ios::beg);
-    * file.ignore(std::numeric_limits<std::streamsize>::max(),'\n'); */
+      float faces[6][9] = {{4, 3 * i, 3 * i + 2, 3 * i + 6, 3 * i + 1, red, blue, green, alpha},
+                           {4, 3 * i, 3 * i + 1, 3 * i + 5, 3 * i + 2, red, blue, green, alpha},
+                           {4, 3 * i, 3 * i + 2, 3 * i + 4, 3 * i + 3, red, blue, green, alpha},
+                           {4, 3 * i + 2, 3 * i + 5, 3 * i + 7, 3 * i + 4, red, blue, green, alpha},
+                           {4, 3 * i + 3, 3 * i + 4, 3 * i + 7, 3 * i + 6, red, blue, green, alpha},
+                           {4, 3 * i + 1, 3 * i + 6, 3 * i + 7, 3 * i + 5, red, blue, green, alpha}};
+
+      // Writing to the .OFF file
+      for (int j = 0; j < 6; j++)
+      {
+         fout << faces[i][0] << " ";
+         fout << faces[i][1] << " ";
+         fout << faces[i][2] << " ";
+         fout << faces[i][3] << " ";
+         fout << faces[i][4] << " ";
+         fout << faces[i][5] << " ";
+         fout << faces[i][6] << " ";
+         fout << faces[i][7] << " ";
+         fout << faces[i][8] << "\n";
+      }
+   }
+
+   fout.close();
+   delete[] activeVoxelCoords[0];
+   delete[] activeVoxelCoords;
 }
