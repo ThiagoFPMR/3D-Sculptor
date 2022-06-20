@@ -108,9 +108,9 @@ void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1)
 {
    // Checking if the parameters are valid
    if (x0 >= nx || x1 >= nx || y0 >= ny || y1 >= ny || z0 >= nz || z1 >= nz)
-      throw std::invalid_argument("Sculptor::putBox(): arguments must be smaller than the respective matrix dimensions.");
+      throw std::invalid_argument("Sculptor::cutBox(): arguments must be smaller than the respective matrix dimensions.");
    if (x0 > x1 || y0 > y1 || z0 > z1)
-      throw std::invalid_argument("Sculptor::putBox(): x1, y1 and z1 must be equal or greater than x0, y0 and z0 respectivelly.");
+      throw std::invalid_argument("Sculptor::cutBox(): x1, y1 and z1 must be equal or greater than x0, y0 and z0 respectivelly.");
    // Deactivating every voxel in the box defined by the parameter values
    for (int i = x0; i <= x1; i++)
       for (int j = y0; j <= y1; j++)
@@ -312,11 +312,11 @@ void Sculptor::writeOFF(const char *filename)
       double alpha = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].a;
 
       double faces[6][9] = {{4, 3. * i, 3. * i + 2., 3. * i + 6., 3. * i + 1., red, blue, green, alpha},
-                           {4, 3. * i, 3. * i + 1, 3. * i + 5., 3. * i + 2., red, blue, green, alpha},
-                           {4, 3. * i, 3. * i + 2., 3. * i + 4., 3. * i + 3., red, blue, green, alpha},
-                           {4, 3. * i + 2., 3. * i + 5., 3. * i + 7., 3. * i + 4., red, blue, green, alpha},
-                           {4, 3. * i + 3., 3. * i + 4., 3. * i + 7., 3. * i + 6., red, blue, green, alpha},
-                           {4, 3. * i + 1., 3. * i + 6., 3. * i + 7., 3. * i + 5., red, blue, green, alpha}};
+                            {4, 3. * i, 3. * i + 1, 3. * i + 5., 3. * i + 2., red, blue, green, alpha},
+                            {4, 3. * i, 3. * i + 2., 3. * i + 4., 3. * i + 3., red, blue, green, alpha},
+                            {4, 3. * i + 2., 3. * i + 5., 3. * i + 7., 3. * i + 4., red, blue, green, alpha},
+                            {4, 3. * i + 3., 3. * i + 4., 3. * i + 7., 3. * i + 6., red, blue, green, alpha},
+                            {4, 3. * i + 1., 3. * i + 6., 3. * i + 7., 3. * i + 5., red, blue, green, alpha}};
 
       // Writing to the .OFF file
       for (int j = 0; j < 6; j++)
