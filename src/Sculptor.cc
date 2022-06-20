@@ -311,7 +311,7 @@ void Sculptor::writeOFF(const char *filename)
       double blue = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].b;
       double alpha = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].a;
 
-      double faces[6][9] = {{4, 3. * i, 3. * i + 2., 3. * i + 6., 3. * i + 1., red, blue, green, alpha},
+      double faces[6][9] = {{4, 3. * i, 3. * i + 3., 3. * i + 6., 3. * i + 1., red, blue, green, alpha},
                             {4, 3. * i, 3. * i + 1, 3. * i + 5., 3. * i + 2., red, blue, green, alpha},
                             {4, 3. * i, 3. * i + 2., 3. * i + 4., 3. * i + 3., red, blue, green, alpha},
                             {4, 3. * i + 2., 3. * i + 5., 3. * i + 7., 3. * i + 4., red, blue, green, alpha},
