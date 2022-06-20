@@ -266,8 +266,8 @@ void Sculptor::writeOFF(const char *filename)
                activeVoxelCoords[nActiveVoxels][1] = j;
                activeVoxelCoords[nActiveVoxels][2] = k;
                nActiveVoxels++;
-               nVertices++;
-               nFaces++;
+               nVertices += 8;
+               nFaces += 6;
             }
          }
    // Opens the .OFF file to write on
@@ -296,9 +296,9 @@ void Sculptor::writeOFF(const char *filename)
       // Writing to the .OFF file
       for (int j = 0; j < 8; j++)
       {
-         fout << corners[i][0] << " ";
-         fout << corners[i][1] << " ";
-         fout << corners[i][2] << "\n";
+         fout << corners[j][0] << " ";
+         fout << corners[j][1] << " ";
+         fout << corners[j][2] << "\n";
       }
    }
    /* The loop below loops through every face of every voxel and writes
@@ -306,30 +306,30 @@ void Sculptor::writeOFF(const char *filename)
    for (int i = 0; i < nActiveVoxels; i++)
    {
       // Gets the colors for the voxel
-      float red = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].r;
-      float green = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].g;
-      float blue = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].b;
-      float alpha = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].a;
+      double red = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].r;
+      double green = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].g;
+      double blue = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].b;
+      double alpha = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].a;
 
-      float faces[6][9] = {{4, 3 * i, 3 * i + 2, 3 * i + 6, 3 * i + 1, red, blue, green, alpha},
-                           {4, 3 * i, 3 * i + 1, 3 * i + 5, 3 * i + 2, red, blue, green, alpha},
-                           {4, 3 * i, 3 * i + 2, 3 * i + 4, 3 * i + 3, red, blue, green, alpha},
-                           {4, 3 * i + 2, 3 * i + 5, 3 * i + 7, 3 * i + 4, red, blue, green, alpha},
-                           {4, 3 * i + 3, 3 * i + 4, 3 * i + 7, 3 * i + 6, red, blue, green, alpha},
-                           {4, 3 * i + 1, 3 * i + 6, 3 * i + 7, 3 * i + 5, red, blue, green, alpha}};
+      double faces[6][9] = {{4, 3. * i, 3. * i + 2., 3. * i + 6., 3. * i + 1., red, blue, green, alpha},
+                           {4, 3. * i, 3. * i + 1, 3. * i + 5., 3. * i + 2., red, blue, green, alpha},
+                           {4, 3. * i, 3. * i + 2., 3. * i + 4., 3. * i + 3., red, blue, green, alpha},
+                           {4, 3. * i + 2., 3. * i + 5., 3. * i + 7., 3. * i + 4., red, blue, green, alpha},
+                           {4, 3. * i + 3., 3. * i + 4., 3. * i + 7., 3. * i + 6., red, blue, green, alpha},
+                           {4, 3. * i + 1., 3. * i + 6., 3. * i + 7., 3. * i + 5., red, blue, green, alpha}};
 
       // Writing to the .OFF file
       for (int j = 0; j < 6; j++)
       {
-         fout << faces[i][0] << " ";
-         fout << faces[i][1] << " ";
-         fout << faces[i][2] << " ";
-         fout << faces[i][3] << " ";
-         fout << faces[i][4] << " ";
-         fout << faces[i][5] << " ";
-         fout << faces[i][6] << " ";
-         fout << faces[i][7] << " ";
-         fout << faces[i][8] << "\n";
+         fout << (int)faces[j][0] << " ";
+         fout << (int)faces[j][1] << " ";
+         fout << (int)faces[j][2] << " ";
+         fout << (int)faces[j][3] << " ";
+         fout << (int)faces[j][4] << " ";
+         fout << faces[j][5] << " ";
+         fout << faces[j][6] << " ";
+         fout << faces[j][7] << " ";
+         fout << faces[j][8] << "\n";
       }
    }
 
