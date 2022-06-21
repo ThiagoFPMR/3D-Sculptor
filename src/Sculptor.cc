@@ -142,7 +142,7 @@ void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int radius)
             // Defining the left side of the equation
             r2 = pow(i - xcenter, 2) + pow(j - ycenter, 2) + pow(k - zcenter, 2);
             // Checking whether the equation is valid for the chosen voxel
-            if (r2 == pow(radius, 2))
+            if (r2 < pow(radius, 2))
             {
                // Activating the voxel
                v[i][j][k].isOn = true;
@@ -173,7 +173,7 @@ void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius)
             // Defining the left side of the equation
             r2 = pow(i - xcenter, 2) + pow(j - ycenter, 2) + pow(k - zcenter, 2);
             // Checking whether the equation is valid for the chosen voxel
-            if (r2 == pow(radius, 2))
+            if (r2 < pow(radius, 2))
             {
                // Deactivating the voxel
                v[i][j][k].isOn = false;
