@@ -246,9 +246,6 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
 // Write .OFF File
 void Sculptor::writeOFF(const char *filename)
 {
-   /* TO-DO: Rewrite method from scratch (coords and faces have to repeat)
-    * just keep track of what the ID for each coord is with a counter var and
-    * loop for each voxel without keeping memory and we'll be fine */
    // Defines variables that will be used in this method
    int nVertices = 0, nFaces = 0, nActiveVoxels = 0, **activeVoxelCoords;
    activeVoxelCoords = new int *[nx * ny * nz];
