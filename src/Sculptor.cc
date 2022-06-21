@@ -47,11 +47,13 @@ Sculptor::~Sculptor()
 // Sets the current drawing color
 void Sculptor::setColor(float r, float g, float b, float alpha)
 {
+   /* NOTE: This method uses a 'this' pointer instead of just giving the parameters
+    * better names because modifying the function parameters is not allowed.*/
    // Defines the current drawing color values as the ones given
-   r = r;
-   g = g;
-   b = b;
-   a = alpha;
+   this->r = r;
+   this->g = g;
+   this->b = b;
+   this->a = alpha;
 }
 
 // Activates the voxel in the (x, y, z) coordinate
@@ -311,12 +313,12 @@ void Sculptor::writeOFF(const char *filename)
       double blue = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].b;
       double alpha = v[activeVoxelCoords[i][0]][activeVoxelCoords[i][1]][activeVoxelCoords[i][2]].a;
 
-      double faces[6][9] = {{4, 3. * i, 3. * i + 3., 3. * i + 6., 3. * i + 1., red, blue, green, alpha},
-                            {4, 3. * i, 3. * i + 1, 3. * i + 5., 3. * i + 2., red, blue, green, alpha},
-                            {4, 3. * i, 3. * i + 2., 3. * i + 4., 3. * i + 3., red, blue, green, alpha},
-                            {4, 3. * i + 2., 3. * i + 5., 3. * i + 7., 3. * i + 4., red, blue, green, alpha},
-                            {4, 3. * i + 3., 3. * i + 4., 3. * i + 7., 3. * i + 6., red, blue, green, alpha},
-                            {4, 3. * i + 1., 3. * i + 6., 3. * i + 7., 3. * i + 5., red, blue, green, alpha}};
+      double faces[6][9] = {{4, 8. * i, 8. * i + 3., 8. * i + 6., 8. * i + 1., red, green, blue, alpha},
+                            {4, 8. * i, 8. * i + 1, 8. * i + 5., 8. * i + 2., red, green, blue, alpha},
+                            {4, 8. * i, 8. * i + 2., 8. * i + 4., 8. * i + 3., red, green, blue, alpha},
+                            {4, 8. * i + 2., 8. * i + 5., 8. * i + 7., 8. * i + 4., red, green, blue, alpha},
+                            {4, 8. * i + 3., 8. * i + 4., 8. * i + 7., 8. * i + 6., red, green, blue, alpha},
+                            {4, 8. * i + 1., 8. * i + 6., 8. * i + 7., 8. * i + 5., red, green, blue, alpha}};
 
       // Writing to the .OFF file
       for (int j = 0; j < 6; j++)
