@@ -187,7 +187,7 @@ void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
    /* For each voxel in the Sculptor object matrix, this method
     * checks whether they fit the equation of an ellipsoid based
     * on their (i, j, k) coordinates and the parameters given */
-   float leftEq = 0;
+   float leftEq;
    // Checking if the parameters are valid
    if (xcenter >= nx || ycenter >= ny || zcenter >= nz)
       throw std::invalid_argument("Sculptor::putEllipsoid(): arguments must be smaller than the respective matrix dimensions.");
@@ -197,12 +197,13 @@ void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
       for (int j = 0; j < ny; j++)
          for (int k = 0; k < nz; k++)
          {
+            leftEq = 0;
             // Defining the left side of the equation
             leftEq += (float)pow(i - xcenter, 2) / (float)pow(rx, 2);
             leftEq += (float)pow(j - ycenter, 2) / (float)pow(ry, 2);
             leftEq += (float)pow(k - zcenter, 2) / (float)pow(rz, 2);
             // Checking whether the equation is valid for the chosen voxel
-            if (leftEq == 1)
+            if (leftEq < 1)
             {
                // Activating the voxel
                v[i][j][k].isOn = true;
@@ -221,7 +222,7 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
    /* For each voxel in the Sculptor object matrix, this method
     * checks whether they fit the equation of an ellipsoid based
     * on their (i, j, k) coordinates and the parameters given */
-   float leftEq = 0;
+   float leftEq;
    // Checking if the parameters are valid
    if (xcenter >= nx || ycenter >= ny || zcenter >= nz)
       throw std::invalid_argument("Sculptor::cutEllipsoid(): arguments must be smaller than the respective matrix dimensions.");
@@ -230,12 +231,13 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
       for (int j = 0; j < ny; j++)
          for (int k = 0; k < nz; k++)
          {
+            leftEq = 0;
             // Defining the left side of the equation
             leftEq += (float)pow(i - xcenter, 2) / (float)pow(rx, 2);
             leftEq += (float)pow(j - ycenter, 2) / (float)pow(ry, 2);
             leftEq += (float)pow(k - zcenter, 2) / (float)pow(rz, 2);
             // Checking whether the equation is valid for the chosen voxel
-            if (leftEq == 1)
+            if (leftEq < 1)
             {
                // Deactivating the voxel
                v[i][j][k].isOn = false;
