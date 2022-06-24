@@ -1,7 +1,19 @@
 var searchData=
 [
-  ['cutbox_0',['cutBox',['../class_sculptor.html#aa84a1b12b09e9e103fc8d78f8d1bc00f',1,'Sculptor']]],
-  ['cutellipsoid_1',['cutEllipsoid',['../class_sculptor.html#a18d2922c111c4c13653ee07d878151ad',1,'Sculptor']]],
-  ['cutsphere_2',['cutSphere',['../class_sculptor.html#a67ab8c0ba5116adb8af1d01ad373ac15',1,'Sculptor']]],
-  ['cutvoxel_3',['cutVoxel',['../class_sculptor.html#ad9d714a35fc8ae16d06eb5df37c3493c',1,'Sculptor']]]
+  ['cutbox_0',['CutBox',['../class_cut_box.html',1,'']]],
+  ['cutbox_1',['cutBox',['../class_sculptor.html#aa84a1b12b09e9e103fc8d78f8d1bc00f',1,'Sculptor']]],
+  ['cutbox_2',['CutBox',['../class_cut_box.html#afffb95f5ae0d48275bfe586bc92bdd04',1,'CutBox']]],
+  ['cutbox_2eh_3',['CutBox.h',['../_cut_box_8h.html',1,'']]],
+  ['cutellipsoid_4',['CutEllipsoid',['../class_cut_ellipsoid.html',1,'']]],
+  ['cutellipsoid_5',['cutEllipsoid',['../class_sculptor.html#a18d2922c111c4c13653ee07d878151ad',1,'Sculptor']]],
+  ['cutellipsoid_6',['CutEllipsoid',['../class_cut_ellipsoid.html#a3b8901fb24594d2aa3435e9ecb4fb6c7',1,'CutEllipsoid']]],
+  ['cutellipsoid_2eh_7',['CutEllipsoid.h',['../_cut_ellipsoid_8h.html',1,'']]],
+  ['cutsphere_8',['CutSphere',['../class_cut_sphere.html',1,'']]],
+  ['cutsphere_9',['cutSphere',['../class_sculptor.html#a67ab8c0ba5116adb8af1d01ad373ac15',1,'Sculptor']]],
+  ['cutsphere_10',['CutSphere',['../class_cut_sphere.html#a67805dfef6aaabdd46ffa6133d866e13',1,'CutSphere']]],
+  ['cutsphere_2eh_11',['CutSphere.h',['../_cut_sphere_8h.html',1,'']]],
+  ['cutvoxel_12',['CutVoxel',['../class_cut_voxel.html',1,'']]],
+  ['cutvoxel_13',['cutVoxel',['../class_sculptor.html#ad9d714a35fc8ae16d06eb5df37c3493c',1,'Sculptor']]],
+  ['cutvoxel_14',['CutVoxel',['../class_cut_voxel.html#a8b8ed10d003e44f945fbebe75c8f0622',1,'CutVoxel']]],
+  ['cutvoxel_2eh_15',['CutVoxel.h',['../_cut_voxel_8h.html',1,'']]]
 ];
