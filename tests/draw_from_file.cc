@@ -172,7 +172,7 @@ int main()
         cmds[i]->draw(*canvas);
     }
 
-    canvas->writeOFF("test_exit.off");
+    canvas->writeOFF("out.off");
 
     // Deletes the dynamically allocated objects
     for (int i = 0; i < cmds.size(); i++)
