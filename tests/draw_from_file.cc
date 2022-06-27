@@ -23,10 +23,8 @@
 
 int main()
 {
-    Sculptor *canvas;
+    Sculptor *canvas = nullptr; // Initializes pointer to avoid segmentation fault
     std::vector<GeometricFigure *> cmds;
-    // Initializes pointer to avoid segmentation fault
-    canvas = new Sculptor(10, 10, 10);
 
     std::ifstream fin;
     std::string s;
