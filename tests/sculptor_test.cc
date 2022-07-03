@@ -1,33 +1,20 @@
 #include <iostream>
+#include <vector>
 
 #include "../include/Voxel.h"
 #include "../include/Sculptor.h"
 
-/*
-void test() {
-    Voxel *** h;
-    Voxel a;
-    a.a = 0.7;
-    Sculptor obj(3, 3, 3);
-    std::cout << "ye" << std::endl;
-    obj.getMatrix(&h);
-    std::cout << "gottem" << std::endl;
-    for (int i = 0; i < 3; i++) {
-        h[0][0][i] = a;
-        std::cout << h[0][0][i].a << std::endl;
-    }
-}
-*/
-void color_test() {
-    Sculptor obj(-3, 3, 3);
-    std::cout << "ye" << std::endl;
-    obj.setColor(0.4, 0.5, 0.3, 0.7);
-}
-
-int main() {
-    std::cout << 0 << std::endl;
-    //test();
-    color_test();
-    std::cout << 1 << std::endl;
+int main()
+{
+    // cria um escultor cuja matriz tem 10x10x10 voxels
+    Sculptor canvas(21, 21, 21);
+    // para mudar a cor do voxel
+    canvas.setColor(0, 0, 1.0, 1.0); // azul
+    // ativa os voxels na faixa de [x,y,z] pertencendo a [0-9]
+    canvas.putEllipsoid(10, 10, 10, 9, 5, 7);
+    // desativa os voxels na faixa de [x,y,z] pertencendo a [0-9]
+    // trono.cutBox(1,8,1,9,1,9);
+    // grava a escultura digital no arquivo "trono.off"
+    canvas.writeOFF("throne.off");
     return 0;
 }
