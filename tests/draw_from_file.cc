@@ -23,13 +23,13 @@
 
 int main()
 {
-    Sculptor *canvas;
+    Sculptor *canvas = nullptr; // Initializes pointer to avoid segmentation fault
     std::vector<GeometricFigure *> cmds;
 
     std::ifstream fin;
     std::string s;
     std::stringstream sstream;
-    fin.open("/mnt/c/Users/thiago/Workspace/Uni/DCA1202/3D-Sculptor/tests/test.txt");
+    fin.open("/home/thiago/Workspace/Uni/DCA1202/3D-Sculptor/tests/test.txt");
     if (!fin.is_open())
         exit(1);
 
@@ -49,8 +49,11 @@ int main()
             sstream >> nx;
             sstream >> ny;
             sstream >> nz;
-            // Creates the Sculptor object with the given parameters
+            /* Creates the Sculptor object with the given parameters
+             * and releases any previously stored values. */
+            Sculptor *tmp = canvas;
             canvas = new Sculptor(nx, ny, nz);
+            delete tmp;
         }
         if (s.compare("putvoxel") == 0)
         {
@@ -172,7 +175,7 @@ int main()
         cmds[i]->draw(*canvas);
     }
 
-    canvas->writeOFF("out.off");
+    canvas->writeOFF("exit.off");
 
     // Deletes the dynamically allocated objects
     for (int i = 0; i < cmds.size(); i++)
