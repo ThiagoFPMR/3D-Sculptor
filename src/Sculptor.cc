@@ -132,7 +132,9 @@ void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int radius)
    int r2;
    // Checking if the parameters are valid
    if (xcenter >= nx || ycenter >= ny || zcenter >= nz)
-      throw std::invalid_argument("Sculptor::putSphere(): arguments must be smaller than the respective matrix dimensions.");
+      throw std::invalid_argument("Sculptor::cutSphere(): center coordinates must be smaller than the respective matrix dimensions.");
+   else if (xcenter + radius >= nx || ycenter + radius >= ny || zcenter + radius >= nz)
+      throw std::invalid_argument("Sculptor::cutSphere(): radius must fit within the matrix dimensions for the given center coordinates.");
    /* Activating and settings the color for every voxel
     * in the sphere defined by the parameter values */
    for (int i = 0; i < nx; i++)
@@ -164,7 +166,9 @@ void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius)
    int r2;
    // Checking if the parameters are valid
    if (xcenter >= nx || ycenter >= ny || zcenter >= nz)
-      throw std::invalid_argument("Sculptor::cutSphere(): arguments must be smaller than the respective matrix dimensions.");
+      throw std::invalid_argument("Sculptor::cutSphere(): center coordinates must be smaller than the respective matrix dimensions.");
+   else if (xcenter + radius >= nx || ycenter + radius >= ny || zcenter + radius >= nz)
+      throw std::invalid_argument("Sculptor::cutSphere(): radius must fit within the matrix dimensions for the given center coordinates.");
    // Deactivating every voxel in the sphere defined by the parameter values
    for (int i = 0; i < nx; i++)
       for (int j = 0; j < ny; j++)
@@ -190,7 +194,9 @@ void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
    float leftEq;
    // Checking if the parameters are valid
    if (xcenter >= nx || ycenter >= ny || zcenter >= nz)
-      throw std::invalid_argument("Sculptor::putEllipsoid(): arguments must be smaller than the respective matrix dimensions.");
+      throw std::invalid_argument("Sculptor::putEllipsoid(): center coordinates must be smaller than the respective matrix dimensions.");
+   else if (xcenter + rx >= nx || ycenter + ry >= ny || zcenter + rz >= nz)
+      throw std::invalid_argument("Sculptor::cutSphere(): radius values must fit within the matrix dimensions for the given center coordinates.");
    /* Activating and settings the color for every voxel
     * in the ellipsoid defined by the parameter values */
    for (int i = 0; i < nx; i++)
@@ -225,7 +231,9 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
    float leftEq;
    // Checking if the parameters are valid
    if (xcenter >= nx || ycenter >= ny || zcenter >= nz)
-      throw std::invalid_argument("Sculptor::cutEllipsoid(): arguments must be smaller than the respective matrix dimensions.");
+      throw std::invalid_argument("Sculptor::putEllipsoid(): center coordinates must be smaller than the respective matrix dimensions.");
+   else if (xcenter + rx >= nx || ycenter + ry >= ny || zcenter + rz >= nz)
+      throw std::invalid_argument("Sculptor::cutSphere(): radius values must fit within the matrix dimensions for the given center coordinates.");
    // Deactivating every voxel in the sphere defined by the parameter values
    for (int i = 0; i < nx; i++)
       for (int j = 0; j < ny; j++)
