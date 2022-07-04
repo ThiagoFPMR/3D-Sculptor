@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['g_0',['g',['../class_sculptor.html#a208c06af69a81a1568df4493868816f1',1,'Sculptor::g()'],['../struct_voxel.html#a27c0da1ed2ff430401d23ff171612a73',1,'Voxel::g()']]],
-  ['geometricfigure_1',['GeometricFigure',['../class_geometric_figure.html',1,'GeometricFigure'],['../class_geometric_figure.html#ab650603d4dd0df6ce8235642e0fdbb20',1,'GeometricFigure::GeometricFigure()']]],
-  ['geometricfigure_2eh_2',['GeometricFigure.h',['../_geometric_figure_8h.html',1,'']]]
+  ['sculptor_0',['Sculptor',['../class_sculptor.html',1,'Sculptor'],['../class_sculptor.html#a014e3ef5517bf0e9d9e14486b6ac6433',1,'Sculptor::Sculptor(int _nx, int _ny, int _nz)']]],
+  ['setcolor_1',['setColor',['../class_sculptor.html#af1d69da01379874b0dfd6454787cb562',1,'Sculptor']]]
 ];

@@ -10,5 +10,5 @@ var annotated_dup =
     [ "PutSphere", "class_put_sphere.html", "class_put_sphere" ],
     [ "PutVoxel", "class_put_voxel.html", "class_put_voxel" ],
     [ "Sculptor", "class_sculptor.html", "class_sculptor" ],
-    [ "Voxel", "struct_voxel.html", "struct_voxel" ]
+    [ "Voxel", "struct_voxel.html", null ]
 ];
