@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <stdexcept>
 #include <cmath>
@@ -335,6 +336,7 @@ void Sculptor::writeOFF(const char *filename)
          fout << (int)faces[j][2] << " ";
          fout << (int)faces[j][3] << " ";
          fout << (int)faces[j][4] << " ";
+         fout << std::setprecision(1) << std::fixed;
          fout << faces[j][5] << " ";
          fout << faces[j][6] << " ";
          fout << faces[j][7] << " ";
