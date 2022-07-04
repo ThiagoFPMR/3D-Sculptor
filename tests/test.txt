@@ -1,9 +1,9 @@
 dim 81 81 81
 putellipsoid 10 10 10 9 5 7 0 0 1 1
 cutellipsoid 11 11 11 8 5 7 0 0 1 1
-putbox 20 30 20 30 20 30
-cutbox 21 29 21 30 21 30
-putsphere 40 40 40 8
-cutsphere 39 39 39 8
-cutVoxel 20 20 20
-putVoxel 33 33 33
+putbox 20 30 20 30 20 30 0 0 1 1 
+cutbox 21 29 21 30 21 30 0 0 1 1
+putsphere 40 40 40 8 0 0 1 1
+cutsphere 39 39 39 8 0 0 1 1
+cutVoxel 20 20 20 0 0 1 1
+putVoxel 33 33 33 0 0 1 1
